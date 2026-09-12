@@ -37,13 +37,13 @@ def configure_logging(level: int = logging.INFO) -> None:
 
 
 def _as_tuple2(value: Any) -> tuple[float, float]:
-    if isinstance(value, (list, tuple)) and len(value) == 2:
+    if isinstance(value, list | tuple) and len(value) == 2:
         return (float(value[0]), float(value[1]))
     raise ValueError(f"expected a length-2 list, got {value!r}")
 
 
 def _as_shape(value: Any) -> tuple[int, int, int]:
-    if isinstance(value, (list, tuple)) and len(value) == 3:
+    if isinstance(value, list | tuple) and len(value) == 3:
         return (int(value[0]), int(value[1]), int(value[2]))
     raise ValueError(f"domain.shape must be [nx, ny, nz], got {value!r}")
 
