@@ -1,0 +1,68 @@
+# Fuller but still laptop-manageable experiment.
+# All material properties and boundary values below are ILLUSTRATIVE / configurable
+# unless a cited source is given in docs/references.md.
+
+seed: 42
+name: default
+output_dir: outputs/default
+overwrite: false
+
+domain:
+  shape: [24, 24, 24]
+  voxel_length_m: 4.0e-5   # 40 micrometers; illustrative discretization
+
+microstructure:
+  n_samples: 36
+  porosity_range: [0.68, 0.90]
+  fiber_radius_voxels_range: [1.0, 2.0]
+  in_plane_spread_deg_range: [10.0, 70.0]
+  out_of_plane_spread_deg_range: [5.0, 40.0]
+  porosity_tolerance: 0.10
+  max_generation_attempts: 10
+  n_fibers_max: 160
+  fiber_length_voxels: 32.0
+
+diffusion:
+  n_time_steps: 28
+  dt_s: 1.5e-4
+  diffusivity_m2_s_range: [1.5e-8, 1.0e-7]
+  reaction_rate_1_s_range: [5.0, 50.0]
+  z_max_bc: zero_flux
+  oxidation_threshold: 0.05
+  enable_degradation: false
+  degradation_damage_threshold: 0.8
+  degradation_max_fraction: 0.02
+  snapshot_times: [0.25, 0.5, 1.0]
+
+conductivity:
+  k_solid_w_m_k: 8.0
+  k_pore_w_m_k: 0.03
+  solver: cg
+  tol: 1.0e-6
+  maxiter: 2000
+  k_bounds_w_m_k: [1.0e-4, 50.0]
+
+dataset:
+  train_fraction: 0.60
+  val_fraction: 0.20
+  test_fraction: 0.20
+  n_cv_folds: 5
+  n_cv_repeats: 3
+
+model:
+  random_forest:
+    n_estimators: 80
+    max_depth: 10
+    min_samples_leaf: 1
+  hist_gbm:
+    max_depth: 5
+    max_iter: 80
+    learning_rate: 0.08
+
+optimization:
+  n_candidates: 48
+  n_confirm: 6
+  seed: 99
+
+evaluation:
+  mape_eps: 1.0e-8

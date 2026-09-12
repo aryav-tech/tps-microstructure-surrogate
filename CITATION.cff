@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+title: tps-microstructure-surrogate
+message: If you use this software, please cite it as below.
+type: software
+authors:
+  - family-names: Shigaonkar
+    given-names: Aryav
+  - name: Collaborator Name TBD
+abstract: >
+  A reduced-order, microscale materials-modeling pipeline that generates
+  synthetic FiberForm-like porous carbon-fiber microstructures, solves a
+  simplified diffusion-reaction oxidation baseline and an effective-conductivity
+  baseline, and trains a tabular physics-guided machine-learning surrogate.
+  This is an educational research prototype validated against its own numerical
+  baseline, not against experiment and not a flight-certification tool.
+keywords:
+  - thermal protection system
+  - porous carbon fiber
+  - oxidation
+  - effective thermal conductivity
+  - surrogate modeling
+license: MIT
+version: 0.1.0
+date-released: "2026-09-11"
+repository-code: https://github.com/aryav-tech/tps-microstructure-surrogate

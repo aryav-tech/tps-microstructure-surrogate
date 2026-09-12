@@ -1,0 +1,78 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tps-microstructure-surrogate"
+version = "0.1.0"
+description = "Physics-guided surrogate for oxidation and thermal transport in synthetic FiberForm-like porous carbon-fiber microstructures."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+authors = [
+    { name = "Aryav Shigaonkar" },
+]
+keywords = [
+    "thermal-protection",
+    "porous-media",
+    "oxidation",
+    "surrogate-model",
+    "carbon-fiber",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "numpy>=1.26,<2.3",
+    "scipy>=1.11,<1.16",
+    "pandas>=2.1,<2.3",
+    "scikit-learn>=1.3,<1.7",
+    "matplotlib>=3.8,<3.11",
+    "seaborn>=0.13,<1",
+    "pyyaml>=6.0,<7",
+    "pytest>=7.4,<9",
+    "joblib>=1.3,<2",
+    "rich>=13.7,<15",
+    "ruff>=0.5,<1",
+]
+
+[project.optional-dependencies]
+torch = ["torch>=2.1"]
+puma = ["pumapy"]
+dev = [
+    "pytest>=7.4,<9",
+    "ruff>=0.5,<1",
+]
+
+[project.urls]
+Homepage = "https://github.com/aryav-tech/tps-microstructure-surrogate"
+Documentation = "https://github.com/aryav-tech/tps-microstructure-surrogate/tree/main/docs"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = [
+    "slow: long-running grid or time-step refinement studies (skipped in default CI)",
+]
+filterwarnings = [
+    "ignore::UserWarning",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "scripts", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "B", "UP"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B018"]

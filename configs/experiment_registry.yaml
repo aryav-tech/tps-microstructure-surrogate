@@ -1,0 +1,9 @@
+# Named experiment registry. Paths are relative to the repository root.
+experiments:
+  small_demo:
+    config: configs/small_demo.yaml
+    description: Laptop CPU smoke test (under ~3 minutes).
+  default:
+    config: configs/default.yaml
+    description: Manageable full pipeline used for local research runs.
+active: small_demo
